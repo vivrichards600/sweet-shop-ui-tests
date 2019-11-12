@@ -11,12 +11,12 @@ This workshop involves you writing five (5) automated tests for both versions of
 ### What You Need Before Getting Started
 * Please keep track of approximately how long it takes for you to write your tests the traditional way and the Visual AI way.
 * Your test scripts can be written in any language but we may only be able to assist you if you get stuck using on of the following:
-    ** Selenium WebDriver (Ruby, Python or C# bindings)
+Selenium WebDriver (Ruby, Python or C# bindings)
 * Only use one of the latest versions of Google Chrome browser (v73+).
 * If you are using Selenium, please use Selenium version 3.
 * If you can’t automate something, create an empty test and add a comment within the test stating the reason you were unable to automate it.
 * Make sure to review the "Main Applitools Concepts" section below to get a high-level understanding of Applitools
-    ** When you are writing visual tests, the "V1" application should be used for the "Baseline" and "V2" application should be used for the checkpoint.
+When you are writing visual tests, the "V1" application should be used for the "Baseline" and "V2" application should be used for the checkpoint.
 * You will need to use the Batching feature to group multiple tests into a single suite/batch. Simply create a batch called "Sweetshop"" and use that batch in all your tests. Then all the screenshots that are part of all the different tests will show up in the same test result.
 
 ## Technical Details
@@ -62,7 +62,7 @@ Once logged in, click on the "Compare Expenses" button on the toolbar. This will
 Test for the existence of a display ad that’s dynamic and at times might go missing. Log in by entering any username and password. Once logged in, you should see two different "Flash sale" gifs. Make sure both gifs exists.
 
 Notes:
-* When you run the same test with the V2 version of the app ( https://demo.applitools.com/hackathonV2.html?showAd=true), one of the gifs won’t be displayed and the other will be a different gif (because ads can change). Your tests need to be smart enough to find the missing gif (bug) and also beware of the different gif (feature). For the visual test, It’s recommended that you use a Layout region annotation.
+* When you run the same test with the V2 version of the app (https://sweetshopv2.netlify.com/), one of the gifs won’t be displayed and the other will be a different gif (because ads can change). Your tests need to be smart enough to find the missing gif (bug) and also beware of the different gif (feature). For the visual test, It’s recommended that you use a Layout region annotation.
 * When you take a screenshot of a page with dynamic content. It’ll constantly change so can’t create a baseline. If you use the "Ignore region", then you can create a baseline. However, you won’t know if the dynamic content goes completely missing. That’s where the "Layout Region" comes in. It’s like an ignore region but doesn’t completely ignore the contents in the region. It only ignore as long as there is some content and structure(or the layout) remains the same but fails if dynamic region is blank.
 
 ## Getting Started
@@ -73,7 +73,7 @@ Applitools tutorials is the quickest way to get started. It has a ready to use G
 You may start with this repo as a starting point and make changes like adding traditional test suite to this code.
 If you are new to Applitools, we recommend going through at least one of the video courses on [Test Automation University](https://testautomationu.applitools.com/) to learn about the full power of the tool
 
-* [Modern Functional Test Automation Through Visual AI](https://testautomationu.applitools.com//modern-functional-testing/index.html) (48 mins - Directly applicable to the hackathon)
+* [Modern Functional Test Automation Through Visual AI](https://testautomationu.applitools.com//modern-functional-testing/index.html) (48 mins - Directly applicable to this workshop)
 * [Automated Visual Testing with Java](https://testautomationu.applitools.com//automated-visual-testing-a-fast-path-to-test-automation-success/index.html)
 * [Automated Visual Testing with WebdriverIO](https://testautomationu.applitools.com//automated-visual-testing-javascript-webdriverio/index.html)
 * [Automated Visual Testing with C#](https://testautomationu.applitools.com//automated-visual-testing-in-csharp/index.html)
@@ -82,9 +82,9 @@ We have also listed the main Applitools concepts below that should be sufficient
 
 ### Main Applitools Concepts
 * Applitools compares screenshots of the tests using an AI. It compares the 1st test run’s screenshot (aka "Baseline") with the current version (aka "Checkpoint"). If there are no differences then the new test is marked as pass. But if there are differences, you need to take appropriate decisions and tell the AI what to do if such differences happen going forward. To do that, all you need to do is to annotate the screenshot and save it. The difference can be because of 3 reasons:
-    ** A new feature was added. In this case, you simply click on the "Thumbs up + Save" button so Applitools will make the new screenshot as the new "baseline" so that for future tests, this new screenshot is used to compare.
-    ** A bug was found: In this case, you’ll use the "bug region" feature to create a box around the bug and click Thumbs Down -> Mark as Fail + Save buttons, to save it as a failure.
-    ** For differences because of dynamic changes in the app, so everytime you take a screenshot, they are different. In this case, you can mark that dynamic region as an "ignore region", "floating region", "layout region", etc. This will essentially ignore dynamic sections of the screenshot from being compared and only compare the stable regions within the page giving you stable results.
+A new feature was added. In this case, you simply click on the "Thumbs up + Save" button so Applitools will make the new screenshot as the new "baseline" so that for future tests, this new screenshot is used to compare.
+A bug was found: In this case, you’ll use the "bug region" feature to create a box around the bug and click Thumbs Down -> Mark as Fail + Save buttons, to save it as a failure.
+For differences because of dynamic changes in the app, so everytime you take a screenshot, they are different. In this case, you can mark that dynamic region as an "ignore region", "floating region", "layout region", etc. This will essentially ignore dynamic sections of the screenshot from being compared and only compare the stable regions within the page giving you stable results.
 * Baseline - When you first run a visual test, Applitools will take a screenshot. That screenshot becomes a baseline. This is the screenshot all future regression tests are compared against.
 * Checkpoint - This is the latest screenshot that Applitools has taken during a regression run.
 * Test: Within Applitools, you’ll take screenshots by calling eyes.open, eyes.checkWindow and eyes.close methods, and in that order. This screenshot is called as a "Test" within Applitools. If you have say, 3 steps in your tests, and you want to take three screenshots, you can call eyes.open, eyes.checkWindow, eyse.checkWindow, eyes.checkWindow, eyes.close. Now you’ll have a single test with 3 test steps (screenshots).
