@@ -3,7 +3,7 @@
 Imagine you wrote tests for the [sweet shop app](https://sweetshop.netlify.com/) (v1) and then some [changes were made a week later](https://sweetshop2.netlify.com/) (v2) which included bugs. Some of these bugs are functional bugs and some of them are visual bugs.
 
 ## Description
-This workshop involves you writing five (5) automated tests for both versions of the sweet shop app:
+This workshop involves you writing six (6) automated tests for both versions of the sweet shop app:
 
 * One suite using your preferred traditional functional testing approach
 * Another suite which covers the same tests but uses visual AI testing with Applitools
@@ -27,8 +27,15 @@ When you are writing visual tests, the "V1" application should be used for the "
 
 Note: When you run the tests against V2, you’ll see differences in screenshots because the app is actually different. You should see exactly what those differences are (highlighted in pink). However, you’d not need to change any code at all. But instead just manage the screenshots within the Applitools dashboard by adding ignore regions, bug regions and so on.
 
-## 5 Main Tasks To Automate
-Below are the five tests you need to write.
+## 6 Main Tasks To Automate
+Below are the six tests you need to write.
+
+### Dynamic Home Page Test
+Open the home page and write assertions to ensure everything looks OK on that page. i.e. add assertions to ensure all text, buttons and sweets are displayed (there should be four). The displayed sweets are dynamic and so will be displayed in a different order each time you visit the page.
+
+Notes:
+* When you run the same test with the V2 version of the app (https://sweetshop2.netlify.com/), the sweets will be displayed in a different order from when you last visited the page. Your tests need to be smart enough to be aware of the different ordering (feature). For the visual test, It’s recommended that you use a Layout region annotation.
+* When you take a screenshot of a page with dynamic content. It’ll constantly change so can’t create a baseline. If you use the "Ignore region", then you can create a baseline. However, you won’t know if the dynamic content goes completely missing. That’s where the "Layout Region" comes in. It’s like an ignore region but doesn’t completely ignore the contents in the region. It only ignore as long as there is some content and structure(or the layout) remains the same but fails if dynamic region is blank.
 
 ### Login Page UI Elements Test
 Open the login page and write assertions to ensure everything looks OK on that page. i.e. add assertions to ensure all the fields, labels and all other items exist.
