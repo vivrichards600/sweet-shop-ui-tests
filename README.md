@@ -3,7 +3,7 @@
 Imagine you wrote tests for the [sweet shop app](https://sweetshop.netlify.com/) (v1) and then some [changes were made a week later](https://sweetshop2.netlify.com/) (v2) which included bugs. Some of these bugs are functional bugs and some of them are visual bugs.
 
 ## Description
-This workshop involves you writing six (6) automated tests for both versions of the sweet shop app:
+This workshop involves you writing five (5) automated tests for both versions of the sweet shop app:
 
 * One suite using your preferred traditional functional testing approach
 * Another suite which covers the same tests but uses visual AI testing with Applitools
@@ -27,15 +27,8 @@ When you are writing visual tests, the "V1" application should be used for the "
 
 Note: When you run the tests against V2, you’ll see differences in screenshots because the app is actually different. You should see exactly what those differences are (highlighted in pink). However, you’d not need to change any code at all. But instead just manage the screenshots within the Applitools dashboard by adding ignore regions, bug regions and so on.
 
-## 6 Main Tasks To Automate
-Below are the six tests you need to write.
-
-### Dynamic Home Page Test
-Open the home page and write assertions to ensure everything looks OK on that page. i.e. add assertions to ensure all text, buttons and sweets are displayed (there should be four). The displayed sweets are dynamic and so will be displayed in a different order each time you visit the page.
-
-Notes:
-* When you run the same test with the V2 version of the app (https://sweetshop2.netlify.com/), the sweets will be displayed in a different order from when you last visited the page. Your tests need to be smart enough to be aware of the different ordering (feature). For the visual test, It’s recommended that you use a Layout region annotation.
-* When you take a screenshot of a page with dynamic content. It’ll constantly change so can’t create a baseline. If you use the "Ignore region", then you can create a baseline. However, you won’t know if the dynamic content goes completely missing. That’s where the "Layout Region" comes in. It’s like an ignore region but doesn’t completely ignore the contents in the region. It only ignore as long as there is some content and structure(or the layout) remains the same but fails if dynamic region is blank.
+## 5 Main Tasks To Automate
+Below are the five tests you need to write.
 
 ### Login Page UI Elements Test
 Open the login page and write assertions to ensure everything looks OK on that page. i.e. add assertions to ensure all the fields, labels and all other items exist.
@@ -44,7 +37,7 @@ Notes:
 * In the traditional approach, if you can’t test this or any other test, please write an empty test with a comment explaining your reason. For the visual testing suite, when you run the same test against V2, you’ll see differences. Mark bugs in the Applitools dashboard using the "Bug regions" feature and save the test as a failure.
 * If you are confused about some part of the difference and do not know if that’s a bug or a feature, in the real world, you’ll add a "Remark" region to collaborate with the development team and ask questions. In this workshop, create a Remark region in the Applitools dashboard for any differences you’re not sure about.
 
-### Data-Driven Test
+### Login Data-Driven Test
 Test the following login functionality by entering different values to username and password fields.
 * If you don’t enter the username and password and click the login button, it should throw an error
 * If you only enter the username and click the login button, it should throw an error
@@ -56,20 +49,21 @@ Notes:
 * You will need to use the Batching feature to group multiple tests into a single suite/batch.
 * When you use eyes.open, give different test names (with numbers or something dynamic) so that Applitools can create four new screenshot (baselines) for each of the 4 sub tests instead of overriding each screenshot with the next sub-test’s screenshot and creating just one baseline.
 
-### Table Sort Test
+### Dashboard Table Sort Test
 Once logged in (use any username and password to login), view the Previous Orders table. Your test should click on the "Order Total" header, and verify that the column is in descending order and that each row’s data stayed in tact after the sorting.
 
 Notes:
 * For the visual testing suite, if your viewport is too small and you see a scrollbar, you need to use Applitools "Full page screenshot" to capture a screenshot of the entire window. Alternatively, you may try increasing the viewport size to avoid this.
 
-### Canvas Chart Test
+### Dashboard Canvas Chart Test
 Once logged in, take a look at the "Order Item Breakdown". This displays a bar chart swhowingprevious orders. Assume the values of the chart are coming from test data and the test data will not change across versions. Validate that the bar chart and representing data (number of bars and their heights). They should remain the same across versions. 
 
-### Dynamic Content Test
-Test for the existence of a display ad that’s dynamic and at times might go missing, you should see two different "Flash sale" gifs.
+### Home Page UI Dynamic Test
+Open the home page and write assertions to ensure everything looks OK on that page. i.e. add assertions to ensure all text, buttons, sweets and the advert are displayed. The displayed sweets are dynamic and so will be displayed in a different order each time you visit the page. The advert is dynamic and at times might go missing, you should see two different "Flash sale" gifs.
 
 Notes:
-* When you run the same test with the V2 version of the app (https://sweetshop2.netlify.com/), one of the gifs won’t be displayed and instead will be replaced with a different gif (because ads can change). Your tests need to be smart enough to be aware of the different gif (feature). For the visual test, It’s recommended that you use a Layout region annotation.
+* When you run the same test with the V2 version of the app (https://sweetshop2.netlify.com/), the sweets will be displayed in a different order from when you last visited the page. Your tests need to be smart enough to be aware of the different ordering (feature). For the visual test, It’s recommended that you use a Layout region annotation.
+* When you run the same test with the V2 version of the app (https://sweetshop2.netlify.com/), one of the "Flash sale" gifs won’t be displayed and instead will be replaced with a different gif (because ads can change). Your tests need to be smart enough to be aware of the different gif (feature). For the visual test, It’s recommended that you use a Layout region annotation.
 * When you take a screenshot of a page with dynamic content. It’ll constantly change so can’t create a baseline. If you use the "Ignore region", then you can create a baseline. However, you won’t know if the dynamic content goes completely missing. That’s where the "Layout Region" comes in. It’s like an ignore region but doesn’t completely ignore the contents in the region. It only ignore as long as there is some content and structure(or the layout) remains the same but fails if dynamic region is blank.
 
 ## Getting Started
