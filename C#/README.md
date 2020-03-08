@@ -1,4 +1,4 @@
-# C# UI Tests
+# C# and Selenium WebDriver
 
 ## Pre-requisites
 In order to run the tests within this project you will need Visual Studio. You can install Visual Studio 2019 Community for free here https://visualstudio.microsoft.com/vs
