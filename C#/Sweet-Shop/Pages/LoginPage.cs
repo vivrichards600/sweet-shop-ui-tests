@@ -16,7 +16,7 @@ namespace Sweet_Shop
             PageFactory.InitElements(driver, this);
         }
 
-        public void goToPage(string version = "")
+        public void goToPage()
         {
             driver.Navigate().GoToUrl($"https://sweetshop.netlify.com/login.html");
         }
