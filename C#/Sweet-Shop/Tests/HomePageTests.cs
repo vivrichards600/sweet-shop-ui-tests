@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Chrome;
 
 namespace Sweet_Shop
 {
@@ -10,29 +9,29 @@ namespace Sweet_Shop
         public void HomePageUIDynamicTest()
         {
             HomePage home = new HomePage(driver);
-            home.goToPage(showAds: true);
+            home.GoToPage();
 
             Assert.AreEqual(home.expectedPageTitle, driver.Title);
 
-            Assert.IsTrue(home.navbarIcon.Displayed);
-            Assert.AreEqual(home.expectedNavbarIconSrc, home.navbarIconSrc());
-            Assert.AreEqual(home.expectedNavbarTitle, home.navbarTitle.Text);
-            Assert.IsTrue(home.navbar.Displayed);
-            Assert.AreEqual(home.expectedNavItemOneText, home.navItemOneText());
-            Assert.AreEqual(home.expectedNavItemTwoText, home.navItemTwoText());
-            Assert.AreEqual(home.expectedNavItemThreeText, home.navItemThreeText());
-            Assert.IsTrue(home.navItemFourText().Contains(home.expectedNavItemFourText));
+            Assert.IsTrue(home.NavbarIcon.Displayed);
+            Assert.AreEqual(home.expectedNavbarIconSrc, home.NavbarIconSrc);
+            Assert.AreEqual(home.expectedNavbarTitle, home.NavbarTitle.Text);
+            Assert.IsTrue(home.Navbar.Displayed);
+            Assert.AreEqual(home.expectedNavItemOneText, home.NavItemOneText);
+            Assert.AreEqual(home.expectedNavItemTwoText, home.NavItemTwoText);
+            Assert.AreEqual(home.expectedNavItemThreeText, home.NavItemThreeText);
+            Assert.IsTrue(home.NavItemFourText.Contains(home.expectedNavItemFourText));
 
-            Assert.IsTrue(home.advert.Displayed);
-            Assert.AreEqual(home.expectedAdvertSrc, home.advertSrc());
+            Assert.IsTrue(home.Advert.Displayed);
+            Assert.AreEqual(home.expectedAdvertSrc, home.AdvertSrc);
 
-            Assert.AreEqual(home.expectedHeadingText, home.heading.Text);
-            Assert.AreEqual(home.expectedLeadText, home.lead.Text);
-            Assert.AreEqual(home.expectedBrowseSweetsButtonText, home.browseSweets.Text);
+            Assert.AreEqual(home.expectedHeadingText, home.Heading.Text);
+            Assert.AreEqual(home.expectedLeadText, home.Lead.Text);
+            Assert.AreEqual(home.expectedBrowseSweetsButtonText, home.BrowseSweets.Text);
 
-            Assert.AreEqual(home.expectedNumberOfDisplayedSweets, home.displayedSweets.Count);
+            Assert.AreEqual(home.expectedNumberOfDisplayedSweets, home.DisplayedSweets.Count);
 
-            Assert.AreEqual(home.expectedFooterCopyrightText, home.footerCopyright.Text);
+            Assert.AreEqual(home.expectedFooterCopyrightText, home.FooterCopyright.Text);
         }
     }
 }

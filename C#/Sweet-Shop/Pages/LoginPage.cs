@@ -1,131 +1,58 @@
-﻿
-using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
-using System;
+﻿using OpenQA.Selenium;
 
 namespace Sweet_Shop
 {
-    class LoginPage
+    public class LoginPage
     {
-        private IWebDriver driver;
+        private readonly IWebDriver driver;
+        public LoginPage(IWebDriver _driver) => driver = _driver;
 
-        public LoginPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
-            PageFactory.InitElements(driver, this);
-        }
+        public IWebElement NavbarIcon =>  driver.FindElement(By.CssSelector(".align-top"));
+        public IWebElement Heading => driver.FindElement(By.TagName("h1"));
+        public IWebElement Lead => driver.FindElement(By.CssSelector(".lead"));
+        public IWebElement InvalidEmail => driver.FindElement(By.CssSelector(".invalid-email"));
+        public IWebElement InvalidPassword => driver.FindElement(By.CssSelector(".invalid-password"));
+        public IWebElement EmailLabel => driver.FindElement(By.XPath("/html/body/div/div/div/form/div[1]/label"));
+        public IWebElement EmailInput => driver.FindElement(By.Id("exampleInputEmail"));
+        public IWebElement PasswordLabel => driver.FindElement(By.XPath("/html/body/div/div/div/form/div[2]/label"));
+        public IWebElement PasswordInput => driver.FindElement(By.Id("exampleInputPassword"));
+        public IWebElement LoginButton => driver.FindElement(By.CssSelector(".btn-primary"));
+        public IWebElement TwitterIcon => driver.FindElement(By.XPath("/html/body/div/div/div/div/a[1]/img"));
+        public IWebElement FacebookIcon => driver.FindElement(By.XPath("/html/body/div/div/div/div/a[2]/img"));
+        public IWebElement LinkedInIcon => driver.FindElement(By.XPath("/html/body/div/div/div/div/a[3]/img"));
 
-        public void goToPage()
-        {
-            driver.Navigate().GoToUrl($"https://sweetshop.netlify.com/login.html");
-        }
-
-        public string expectedPageTitle = "Sweet Shop";
-
-        [FindsBy(How = How.CssSelector, Using = ".align-top")]
-        public IWebElement navbarIcon;
-        public string navbarIconSrc()
-        {
-            return navbarIcon.GetAttribute("src");
-        }
-        
-        public string expectedNavbarIconSrc = "https://sweetshop.netlify.com/favicon.png";
-
-        [FindsBy(How = How.TagName, Using = "h1")]
-        public IWebElement heading;
-
-        public string expectedHeadingText = "Login";
-
-        [FindsBy(How = How.CssSelector, Using = ".lead")]
-        public IWebElement lead;
-
-        public string expectedLeadText = "Please enter your email address and password in order to login to your account.";
-
-        [FindsBy(How = How.CssSelector, Using = ".invalid-email")]
-        public IWebElement invalidEmail;
-
-        public string expectedInvalidEmail = "Please enter a valid email address.";
-
-        [FindsBy(How = How.CssSelector, Using = ".invalid-password")]
-        public IWebElement invalidPassword;
-
-        public string expectedInvalidPassword = "Please enter a valid password.";
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/form/div[1]/label")]
-        public IWebElement emailLabel;
-
-        public string expectedEmailLabelText = "Email address";
-
-        [FindsBy(How = How.Id, Using = "exampleInputEmail")]
-        public IWebElement emailInput;
-
-        public string emailInputPlaceholderText()
-        {
-            return emailInput.GetAttribute("placeholder");
-        }
-
-        public string expectedEmailInputPlaceholderText = "you@example.com";
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/form/div[2]/label")]
-        public IWebElement passwordLabel;
-
-        public string expectedPasswordLabelText = "Password";
-
-        [FindsBy(How = How.Id, Using = "exampleInputPassword")]
-        public IWebElement passwordInput;
-
-        public string passwordInputPlaceholderText()
-        {
-            return passwordInput.GetAttribute("placeholder");
-        }
-
-        public string expectedPasswordInputPlaceholderText = "Password";
-
-        [FindsBy(How = How.CssSelector, Using = ".btn-primary")]
-        public IWebElement loginButton;
-
-        public string expectedLoginButtonText = "Login";
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/div/a[1]/img")]
-        public IWebElement twitterIcon;
-
-        public string twitterIconSrc()
-        {
-            return twitterIcon.GetAttribute("src");
-        }
-
-        public string expectedTwitterIconSrc = "https://sweetshop.netlify.com/img/twitter.png";
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/div/a[2]/img")]
-        public IWebElement facebookIcon;
-
-        public string facebookIconSrc()
-        {
-            return facebookIcon.GetAttribute("src");
-        }
-
-        public string expectedFacebookIconSrc = "https://sweetshop.netlify.com/img/facebook.png";
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/div/a[3]/img")]
-        public IWebElement linkedInIcon;
-
-        public string linkedInIconSrc()
-        {
-            return linkedInIcon.GetAttribute("src");
-        }
-
-        public string expectedLinkedInIconSrc = "https://sweetshop.netlify.com/img/linkedin.png";
+        public void GoToPage() => driver.Navigate().GoToUrl($"https://sweetshop.netlify.app/login.html");
 
         public void Submit(string email = "", string password = "")
         {
-          emailInput.Clear();
-            emailInput.SendKeys(email);
+          EmailInput.Clear();
+            EmailInput.SendKeys(email);
 
-            passwordInput.Clear();
-            passwordInput.SendKeys(password);
+            PasswordInput.Clear();
+            PasswordInput.SendKeys(password);
 
-            loginButton.Click();
+            LoginButton.Click();
         }
+
+        public string expectedPageTitle = "Sweet Shop";
+        public string NavbarIconSrc() => NavbarIcon.GetAttribute("src");
+        public string expectedNavbarIconSrc = "https://sweetshop.netlify.app/favicon.png";
+        public string expectedHeadingText = "Login";
+        public string expectedLeadText = "Please enter your email address and password in order to login to your account.";
+        public string expectedInvalidEmail = "Please enter a valid email address.";
+        public string expectedInvalidPassword = "Please enter a valid password.";
+        public string expectedEmailLabelText = "Email address";
+        public string EmailInputPlaceholderText() => EmailInput.GetAttribute("placeholder");
+        public string expectedEmailInputPlaceholderText = "you@example.com";
+        public string expectedPasswordLabelText = "Password";
+        public string PasswordInputPlaceholderText() => PasswordInput.GetAttribute("placeholder");
+        public string expectedPasswordInputPlaceholderText = "Password";
+        public string expectedLoginButtonText = "Login";
+        public string TwitterIconSrc() => TwitterIcon.GetAttribute("src");
+        public string expectedTwitterIconSrc = "https://sweetshop.netlify.app/img/twitter.png";
+        public string FacebookIconSrc() => FacebookIcon.GetAttribute("src");
+        public string expectedFacebookIconSrc = "https://sweetshop.netlify.app/img/facebook.png";
+        public string LinkedInIconSrc() => LinkedInIcon.GetAttribute("src");
+        public string expectedLinkedInIconSrc = "https://sweetshop.netlify.app/img/linkedin.png";
     }
 }

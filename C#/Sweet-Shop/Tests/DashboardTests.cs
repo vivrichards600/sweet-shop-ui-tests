@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Chrome;
 
 namespace Sweet_Shop
 {
@@ -10,22 +9,22 @@ namespace Sweet_Shop
         public void DashboardTableSortTest()
         {
             LoginPage login = new LoginPage(driver);
-            login.goToPage();
+            login.GoToPage();
             login.Submit(email: validEmail, password: validPassword);
 
             DashboardPage dashboard = new DashboardPage(driver);
-            Assert.AreEqual(dashboard.expectedTableRowOneAmount, dashboard.tableRowOneAmount.Text);
-            Assert.AreEqual(dashboard.expectedTableRowTwoAmount, dashboard.tableRowTwoAmount.Text);
-            Assert.AreEqual(dashboard.expectedTableRowThreeAmount, dashboard.tableRowThreeAmount.Text);
+            Assert.AreEqual(dashboard.expectedTableRowOneAmount, dashboard.TableRowOneAmount.Text);
+            Assert.AreEqual(dashboard.expectedTableRowTwoAmount, dashboard.TableRowTwoAmount.Text);
+            Assert.AreEqual(dashboard.expectedTableRowThreeAmount, dashboard.TableRowThreeAmount.Text);
 
-            dashboard.sortTableByAmount();
+            dashboard.SortTableByAmount();
 
-            Assert.AreEqual(dashboard.expectedSortedTableRowOneAmount, dashboard.tableRowOneAmount.Text);
-            Assert.AreEqual(dashboard.expectedSortedTableRowTwoAmount, dashboard.tableRowTwoAmount.Text);
-            Assert.AreEqual(dashboard.expectedSortedTableRowThreeAmount, dashboard.tableRowThreeAmount.Text);
+            Assert.AreEqual(dashboard.expectedSortedTableRowOneAmount, dashboard.TableRowOneAmount.Text);
+            Assert.AreEqual(dashboard.expectedSortedTableRowTwoAmount, dashboard.TableRowTwoAmount.Text);
+            Assert.AreEqual(dashboard.expectedSortedTableRowThreeAmount, dashboard.TableRowThreeAmount.Text);
         }
 
-        private string validEmail = "test@user.com";
-        private string validPassword = "Password1";
+        private readonly string validEmail = "test@user.com";
+        private readonly string validPassword = "Password1";
     }
 }
